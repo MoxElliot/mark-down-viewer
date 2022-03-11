@@ -1,25 +1,52 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react';
+import React from 'react';
+import { marked } from 'marked';
 
-function App() {
+marked.setOptions({
+  breaks: true
+});
+
+const renderer = new marked.Renderer();
+
+const App = ()=> {
+  const [editorText, setEditorText] = useState("");
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="text-center px-4">
+
+        <div className="topHeading">
+          <h1>Mark Down Viewer</h1>
+        </div>
+
+        <div className="section">
+          <h2 className="heading">Editor</h2>
+          <textarea 
+            id="editor" 
+            value={editorText} 
+            onChange={(e) => setEditorText(e.target.value)} />
+        </div>
+
+        <div className="section">
+          <h2 className="heading">Preview</h2>
+          <Preview markdown={editorText} />
+        </div>
+
+      </div>
+      
+
     </div>
   );
 }
 
+const Preview = ({markdown}) => {
+  return (
+    <div dangerouslySetInnerHTML={{
+      __html: marked(markdown, {renderer: renderer}),
+    }}
+    id="preview">
+
+    </div>
+  )
+}
 export default App;
