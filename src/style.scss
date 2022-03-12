@@ -1,0 +1,22 @@
+
+$basicBorder: 1px solid black;
+$redBorder: 1px solid red;
+
+body {
+    background-color: grey;}
+
+#preview {
+    background-color: white;
+}
+
+textarea, #preview {
+    width: 600px;
+}
+
+#editor {
+    height: 100%;
+}
+
+image {
+    width: 10px;
+}

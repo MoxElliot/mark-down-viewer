@@ -12,24 +12,24 @@ const App = ()=> {
   const [editorText, setEditorText] = useState(placeholder);
 
   return (
-    <div className="App">
-      <div className="text-center px-4">
-
-        <div className="topHeading">
-          <h1>Mark Down Viewer</h1>
-        </div>
-
-        <div className="section">
-          <h2 className="heading">Editor</h2>
+    <div className="App container">
+      <h1 className="text-center mt-4">Mark Down Viewer</h1>
+     
+        <div className="row">
+        <div className="col-6" id="editorSection">
+          <h4 className="text-center">Editor</h4>
           <textarea 
             id="editor"
+            className="form-control p-2"
             defaultValue= {placeholder}
             onChange={(e) => setEditorText(e.target.value)} />
         </div>
 
-        <div className="section">
-          <h2 className="heading">Preview</h2>
+        <div className="col-6">
+          <h4 className='text-center'>Preview</h4>
+          
           <Preview markdown={editorText} />
+          
         </div>
       </div>
     </div>
@@ -41,7 +41,8 @@ const Preview = ({markdown}) => {
     <div dangerouslySetInnerHTML={{
       __html: marked(markdown, {renderer: renderer}),
     }}
-    id="preview">
+    id="preview"
+    className="col-6 previewSection">
 
     </div>
   )
@@ -90,5 +91,5 @@ And here. | Okay. | I think we get it.
 1. Use just 1s if you want!
 1. And last but not least, let's not forget embedded images:
 
-![freeCodeCamp Logo](https://cdn.freecodecamp.org/testable-projects-fcc/images/fcc_secondary.svg)
+![Samurai](https://api.audiotool.com/track/fqcpp7rz/cover/512.jpg)
 `;
